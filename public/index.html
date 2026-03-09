@@ -1,1 +1,41 @@
-<html><head><title>我的 AI 助手</title></head><body><h1>欢迎使用我的 AI 助手</h1><div id="chat-container"></div><input type="text" id="user-input" placeholder="请输入你的问题..."><button onclick="sendMessage()">发送</button><script>function sendMessage(){let input=document.getElementById('user-input').value;let container=document.getElementById('chat-container');container.innerHTML+='<div>你：'+input+'</div>';}</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的AI创作平台</title>
+    <style>
+        .container {display: flex; gap: 20px; padding: 20px;}
+        .left-panel {width: 70%; border: 1px solid #ddd; padding: 15px;}
+        .right-panel {width: 30%; border: 1px solid #ddd; padding: 15px;}
+        #chat-box {height: 300px; overflow-y: auto; border: 1px solid #eee; margin-bottom: 10px; padding: 10px;}
+        #user-input {width: 80%; padding: 8px;}
+        #send-btn {padding: 8px 15px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h3>创作交互区</h3>
+            <div id="chat-box"></div>
+            <input type="text" id="user-input" placeholder="输入你的需求...">
+            <button id="send-btn" onclick="sendMessage()">发送</button>
+        </div>
+        <div class="right-panel">
+            <h3>作品列表</h3>
+            <div id="file-list">
+                <div>作品1：视频片段</div>
+                <div>作品2：文案文档</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            let input = document.getElementById('user-input').value;
+            if (!input) return;
+            let chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div>你：${input}</div>`;
+            document.getElementById('user-input').value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
