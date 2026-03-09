@@ -34,6 +34,16 @@
             </div>
         </div>
     </div>
-    <script>function sendMessage () {const input = document.getElementById ('user-input').value.trim ();if (!input) return;const chatBox = document.getElementById ('chat-box');chatBox.innerHTML += <div>用户: ${input}</div>;document.getElementById('user-input').value = '';fetch('https://openrouter.ai/api/v1/chat/completions', {method: 'POST',headers: {'Content-Type': 'application/json','Authorization': Bearer ${OPENAI_API_KEY}},body: JSON.stringify({model: document.getElementById('model-select').value,messages: [{role: 'user', content: input}]})}).then(res => res.json()).then(data => {chatBox.innerHTML += <div>AI: ${data.choices[0].message.content}</div>;chatBox.scrollTop = chatBox.scrollHeight;})}</script>
+    <script>
+    function sendMessage() {const input = document.getElementById('user-input').value.trim();
+                            if (!input) return;const chatBox = document.getElementById('chat-box');chatBox.innerHTML += 
+                                `<div>用户: ${input}</div>`;document.getElementById('user-input').value =
+                                '';fetch('https://openrouter.ai/api/v1/chat/completions', 
+                                         {method: 'POST',headers: {'Content-Type': 'application/json',
+                'Authorization': `Bearer ${OPENAI_API_KEY}`},body: JSON.stringify({model: document.getElementById('model-select').value,
+                            messages: [{role: 'user', content: input}]})}).then(res => 
+                                res.json()).then(data => {chatBox.innerHTML += `<div>AI: ${data.choices[0].message.content}</div>`;
+                                                          chatBox.scrollTop = chatBox.scrollHeight;})}
+    </script>
 </body>
 </html>
