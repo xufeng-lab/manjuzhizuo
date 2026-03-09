@@ -34,9 +34,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function sendMessage () {let input = document.getElementById ('user-input').value;if (!input) return;let chatBox = document.getElementById ('chat-box');chatBox.innerHTML += <div>我: ${input}</div>;document.getElementById('user-input').value = '';
-fetch('https://openrouter.ai/api/v1/chat/completions', {method: 'POST',headers: {'Content-Type': 'application/json','Authorization': 'Bearer sk-or-v1-883755d6f057986aefccd153fa3ac55a4aee3a1b75b79e8f68b70b728a6'},body: JSON.stringify({model: document.getElementById('model-select').value,messages: [{role: 'user', content: input}]})}).then(res => res.json()).then(data => {chatBox.innerHTML += <div>AI: ${data.choices[0].message.content}</div>;chatBox.scrollTop = chatBox.scrollHeight;});}
-    </script>
+    <script>function sendMessage() {const input = document.getElementById('user-input').value.trim();if (!input) return;const chatBox = document.getElementById('chat-box');chatBox.innerHTML += `<div>我: ${input}</div>`;document.getElementById('user-input').value = '';fetch('https://openrouter.ai/api/v1/chat/completions', {method: 'POST',headers: {'Content-Type': 'application/json','Authorization': 'Bearer sk-or-v1-883755d6f057986aefccd153fa3ac55a4aee3a1b75b79e8f68b70b728a6'},body: JSON.stringify({model: document.getElementById('model-select').value,messages: [{role: 'user', content: input}]})}).then(res => res.json()).then(data => {chatBox.innerHTML += `<div>AI: ${data.choices[0].message.content}</div>`;chatBox.scrollTop = chatBox.scrollHeight;});}</script>
 </body>
 </html>
