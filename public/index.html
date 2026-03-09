@@ -15,7 +15,14 @@
     <div class="container">
         <div class="left-panel">
             <h3>创作交互区</h3>
-            <div id="chat-box"></div>
+            <div id="chat-box"></div> 
+            <select id="model-select"><option value="gpt-3.5-turbo">GPT-3.5</option> 
+                                    <option value="gpt-4">GPT-4</option>
+                                    <option value="gemini-pro">Gemini</option>
+                                    <option value="gemini-3.1-pro-preview">Gemini</option>
+           <option value="RH_NanoBanana2_gemini-3.1-flash-image-preview">Gemini</option>
+        <option value="grok-3-beta">Grok 3</option>
+            </select>
             <input type="text" id="user-input" placeholder="输入你的需求...">
             <button id="send-btn" onclick="sendMessage()">发送</button>
         </div>
