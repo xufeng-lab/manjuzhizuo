@@ -29,13 +29,30 @@
     </div>
     <script>
         function sendMessage() {
-            let input = document.getElementById('user-input').value;
-            if (!input) return;
-            let chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML += `<div>你：${input}</div>`;
-            document.getElementById('user-input').value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
+    let input = document.getElementById('user-input').value;
+    if (!input) return;
+    let chatBox = document.getElementById('chat-box');
+    chatBox.innerHTML += `<div>你：${input}</div>`;
+    document.getElementById('user-input').value = '';
+    
+    fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + OPENAI_API_KEY
+        },
+        body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [{role: 'user', content: input}]
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        chatBox.innerHTML += `<div>AI：${data.choices[0].message.content}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    });
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
     </script>
 </body>
 </html>
